@@ -1,7 +1,7 @@
 import React from "react";
 import "./Header.scss";
 import { motion } from "framer-motion";
-
+import { AppWrap } from "../../wrapper/index";
 import { images } from "../../constants";
 import "./Header.scss";
 
