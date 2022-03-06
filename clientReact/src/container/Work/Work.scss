@@ -104,5 +104,39 @@
         height: 50px;
         border-radius: 50%;
         background-color: rgba(0,0,0,0.5);
+        color: #fff;
+        margin: 1rem;
+        font-family: var(--font-base);
+        font-weight: 800;
+        cursor:pointer;
+        transition: all 0.3s ease;
+    }
+
+    svg{
+        width: 50%;
+        height: 50%;
+        color: var(--white-color);
+    }
+
+
+}
+
+.app__work-content{
+    padding: 0.5rem;
+    width: 100%;
+    position: relative;
+    flex-direction: column;
+
+    h4{
+        margin-top: 1rem;
+        line-height: 1.5;
+    }
+
+    .app__work-tag{
+        position: absolute;
+        padding: 0.5rem 1rem;
+        background-color: #fff;
+        border-radius: 10px;
+        top: -25px;
     }
 }
