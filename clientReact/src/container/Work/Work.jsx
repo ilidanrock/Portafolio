@@ -8,19 +8,35 @@ import "./Work.scss";
 
 const Work = () => {
   const [activeFilter, setActiveFilter] = useState("All");
-  const [animateCard, setanimateCard] = useState({ y: 0, opacity: 1 });
+  const [animateCard, setAnimateCard] = useState({ y: 0, opacity: 1 });
   const [works, setWorks] = useState([]);
-  const [filterWork, setFilterwork] = useState([]);
+  const [filterWorks, setFilterWorks] = useState([]);
 
   useEffect(() => {
     const query = '*[_type == "works"]';
     client.fetch(query).then((data) => {
+      console.log(data);
       setWorks(data);
-      setFilterwork(data);
+      setFilterWorks(data);
     });
   }, []);
 
-  const handleWorkFilter = (item) => {};
+  const handleWorkFilter = (item) => {
+
+    setActiveFilter(item)
+    setAnimateCard([{y:100, opacity:0}])
+
+    setTimeout(() => {
+      setAnimateCard([{y:0, opacity:1}])
+
+      if (item==='All') {
+        setFilterWorks(works)
+      }else{
+        setFilterWorks(works.filter((work) => work.tags.includes(item)  ))
+      }
+
+    }, 500);
+  };
   return (
     <>
       <h2 className="head-text">
@@ -47,7 +63,7 @@ const Work = () => {
         transition={{ duration: 0.5, delayChildren: 0.5 }}
         className="app__work-portafolio"
       >
-        {filterWork.map((work, index) => (
+        {filterWorks.map((work, index) => (
           <div className="app__work-item app__flex" key={index}>
             <div className="app__work-img app__flex">
               <img src={urlFor(work.imgUrl)} alt={work.name} />
