@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { AiFillEye, AiFillGithub } from "react-icons/ai";
-import { animate, motion } from "framer-motion";
+import { motion } from "framer-motion";
 import { AppWrap , MotionWrap } from "../../wrapper";
 import { urlFor, client } from "../../client";
 
@@ -40,7 +40,7 @@ const Work = () => {
         My creative<span> Portfolio</span>
       </h2>
       <div className="app__work-filter">
-        {["UI/UX", "Web App", "Mobile App", "React Js", "All"].map(
+        { ["HTML & CSS", "React Native Expo", "ReactJS and Redux", "All"].map(
           (item, index) => (
             <div
               key={index}

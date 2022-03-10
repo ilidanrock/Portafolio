@@ -19,11 +19,13 @@
   display: flex;
   justify-content: flex-start;
   align-items: center;
+  background-color: transparent;
 
   img {
     width: 150px;
     height: 65px;
     border-radius: 20%;
+
 
     @media screen and (min-width: 2000px) {
       width: 150px;

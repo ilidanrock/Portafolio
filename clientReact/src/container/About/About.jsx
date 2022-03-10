@@ -35,7 +35,7 @@ const About = () => {
   
   return (
     <>
-      <h2 className="head-text">I know that <span> Good App</span><br />means<span> Good business</span></h2>
+      <h2 className="head-text">Turning <span>ideas</span><br /> into web<span> sites</span></h2>
       <dir className="app__profiles">
         {abouts.map((about, index) => (
           <motion.div
