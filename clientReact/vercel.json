@@ -1,6 +1,0 @@
-{
-    "version": 2,
-    "functions": {
-      "runtime": "nodejs18.x"  
-    }
-  }
