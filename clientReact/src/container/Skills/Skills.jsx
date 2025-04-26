@@ -20,6 +20,8 @@ const Skills = () => {
     });
 
     client.fetch(skillsQuery).then((data) => {
+      console.log("SKILLS", data);
+      
       setSkills(data);
     });
   }, []);
