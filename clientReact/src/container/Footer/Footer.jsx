@@ -1,19 +1,23 @@
-import React, { useState } from "react"
+import React, { useState, useRef } from "react"
 import { images } from "../../constants";
 import { AppWrap, MotionWrap } from "../../wrapper";
 //import { client } from "../../client";
+import emailjs from '@emailjs/browser';
 import "./Footer.scss";
+import { environmentsVariables } from "../../config/config";
 
-const axios = require('axios').default;
 
 const Footer = () => {
+  const form = useRef();
   const [formData, setFormData] = useState({
     name: "",
     email: "",
     message: "",
   });
-  const [isFormSubmitted, setIsFormSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
+
+  console.log(environmentsVariables);
+  
 
   const { username, email, message } = formData;
 
@@ -22,28 +26,45 @@ const Footer = () => {
     setFormData({ ...formData, [name]: value });
   };
 
-  const handleSubmit = () => {
-    setLoading(true);
 
-    const contact = {
-      //_type: "contact",
-      name: formData.username,
-      email: formData.email,
-      message: formData.message
+  
+    const sendEmail = (e) => {
+      e.preventDefault();
+      setLoading(true);
+      emailjs
+        .sendForm(environmentsVariables.REACT_APP_EMAILJS_SERVICE_ID, environmentsVariables.REACT_APP_EMAILJS_TEMPLATE_ID, form.current, {
+          publicKey: environmentsVariables.REACT_APP_EMAILJS_PUBLIC_KEY,
+        })
+        .then(
+          () => {
+            console.log('SUCCESS!', form.current);
+            setFormData({
+              name: "",
+              email: "",
+              message: "",
+            });
+            setLoading(false);
+          },
+          (error) => {
+            console.log('FAILED...', error.text);
+            setFormData({
+              name: "",
+              email: "",
+              message: "",
+            });
+            setLoading(false);
+            alert(
+              "Something went wrong, please try again later."
+            );
+            
+          },
+        );
     };
-    console.log("CONTACT", contact);
-    axios
-      .post("https://superfleetback.herokuapp.com/api/contact",contact)
-      .then(() => {
-        setLoading(false);
-        setIsFormSubmitted(true);
-      })
-      .catch((err) => console.log(err));
 
-  };
 
   return (
     <>
+    <form ref={form} onSubmit={sendEmail} className="app__footer-cards">
       <h2 className="head-text">Take a coffee & chat with me</h2>
 
       <div className="app__footer-cards">
@@ -55,19 +76,18 @@ const Footer = () => {
         </div>
         <div className="app__footer-card">
           <img src={images.mobile} alt="phone" />
-          <a href="tel:+51920300340" className="p-text">
+          <a href="https://wa.me/+51920300340" className="p-text">
             +51920300340
           </a>
         </div>
-      </div>
-      {!isFormSubmitted ? (
+      </div> 
         <div className="app__footer-form app__flex">
           <div className="app__flex">
             <input
               className="p-text"
               type="text"
               placeholder="Your Name"
-              name="username"
+              name="name"
               value={username}
               onChange={handleChangeInput}
             />
@@ -91,15 +111,11 @@ const Footer = () => {
               onChange={handleChangeInput}
             />
           </div>
-          <button type="button" className="p-text" onClick={handleSubmit}>
-            {!loading ? "Send Message" : "Sending..."}
+          <button type="button" className="p-text" onClick={sendEmail}>
+            {loading ? "Sending..." : "Send Message"}
           </button>
         </div>
-      ) : (
-        <div>
-          <h3 className="head-text">Thank you for getting in touch!</h3>
-        </div>
-      )}
+      </form>
     </>
   );
 };
