@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import ReactTooltip from "react-tooltip";
 import { AppWrap , MotionWrap} from "../../wrapper";
 import { urlFor, client } from "../../client";
 
@@ -15,12 +14,12 @@ const Skills = () => {
     const skillsQuery = '*[_type == "skills"]';
 
     client.fetch(query).then((data) => {
-      console.log("EXPIENCIES", data);
+      console.log(data);
+      
       setExperiencies(data);
     });
 
     client.fetch(skillsQuery).then((data) => {
-      console.log("SKILLS", data);
       
       setSkills(data);
     });
@@ -55,8 +54,9 @@ const Skills = () => {
                 <p className="bold-text">{experience.year}</p>
               </div>
               <motion.div className="app__skills-exp-works">
-                {experience.works.map((work) => (
-                  <div key={work.name}>
+                {experience.works.map((work) =>  {        
+                    return (    
+                    <div key={work.name}>
                     <motion.div
                       whileInView={{ opacity: [0, 1] }}
                       transition={{ duration: 0.5 }}
@@ -66,21 +66,20 @@ const Skills = () => {
                       key={work.name}
                     >
                       <h4 className="bold-text">{work.name}</h4>
-                      <p className="p-text">{work.company}</p>
+                      <h5 className="p-text">{work.company}</h5>
+                      {
+                      work?.works?.map((work) => (
+                        <ul key={work}>
+                        <li className="p-text">{work}</li>
+                        </ul>
+                      ))
+                      }
                     </motion.div>
-                    <ReactTooltip
-                      id={work.name}
-                      effect="solid"
-                      arrowColor="#fff"
-                      className="skills-tooltip"
-                    >
-                      {work.desc}
-                    </ReactTooltip>
-                  </div>
-                ))}
+                    </div>
+                  )})}
               </motion.div>
             </motion.div>
-          ))}
+          )).reverse()}
         </motion.div>
       </div>
     </>
