@@ -35,6 +35,7 @@ import nb from '../assets/nb.png';
 import skype from '../assets/skype.png';
 import spotify from '../assets/spotify.png';
 import me from '../assets/me.png';
+import whatsapp from '../assets/whatsapp-svgrepo-com.svg';
 
 const  images = {
   email,
@@ -72,7 +73,8 @@ const  images = {
   skype,
   spotify,
   me,
-  tailwind
+  tailwind,
+  whatsapp
 };
 
 export default images

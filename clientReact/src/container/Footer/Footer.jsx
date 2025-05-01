@@ -74,12 +74,12 @@ const Footer = () => {
             rluis747@gmail.com
           </a>
         </div>
+        <a href="https://wa.me/+51920300340" className="p-text">
         <div className="app__footer-card">
-          <img src={images.mobile} alt="phone" />
-          <a href="https://wa.me/+51920300340" className="p-text">
-            +51920300340
-          </a>
+          <img src={images.whatsapp} alt="whatsapp number" />
+          +51920300340
         </div>
+        </a>
       </div> 
         <div className="app__footer-form app__flex">
           <div className="app__flex">
