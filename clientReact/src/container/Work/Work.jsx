@@ -40,21 +40,20 @@ const Work = () => {
         My creative<span> Portfolio</span>
       </h2>
       <div className="app__work-filter">
-        { ["HTML & CSS", "React Native Expo", "ReactJS and Redux", "All"].map(
-          (item, index) => (
-            <div
-              key={index}
-              onClick={() => handleWorkFilter(item)}
-              className={`app__work-filter-item app__flex p-tex ${
-                activeFilter === item ? "item-active" : ""
-              }`}
-            >
-              {item}
-            </div>
-          )
-        )}
+  {[...new Set(["All", ...((works || []).flatMap((work) => work.tags || []))])].map(
+    (item) => (
+      <div
+        key={item}
+        onClick={() => handleWorkFilter(item)}
+        className={`app__work-filter-item app__flex p-tex ${
+          activeFilter === item ? "item-active" : ""
+        }`}
+      >
+        {item}
       </div>
-
+    )
+  )}
+</div>
       <motion.div
         animate={animateCard}
         transition={{ duration: 0.5, delayChildren: 0.5 }}
