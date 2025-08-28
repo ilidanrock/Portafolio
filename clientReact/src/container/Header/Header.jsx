@@ -45,7 +45,7 @@ const Header = () => {
       >
         <img src={images.me} alt="profile_bg" />
         <motion.img
-          whileInView={{ scale: [0, 1] }}
+          whileInView={{ scale: [0, 0] }}
           transition={{ duration: 1, ease: "easeInOut" }}
           src={images.circle}
           alt="profile_circle"

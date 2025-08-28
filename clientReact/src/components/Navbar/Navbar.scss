@@ -6,13 +6,44 @@
   align-items: center;
 
   padding: 1rem 2rem;
-  background: rgba(255, 255, 255, 0.25);
+  /* Glass background that adapts to theme */
+  background: color-mix(in srgb, var(--white-color) 25%, transparent);
   // box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
   backdrop-filter: blur(4px);
   -webkit-backdrop-filter: blur(4px);
-  border: 1px solid rgba(255, 255, 255, 0.18);
+  border: 1px solid color-mix(in srgb, var(--white-color) 18%, transparent);
   position: fixed;
   z-index: 2;
+}
+
+/* Theme toggle button */
+.theme-toggle {
+  padding: 0.45rem 0.9rem;
+  border-radius: 0.5rem;
+  border: 1px solid var(--lightGray-color);
+  background: var(--white-color);
+  color: var(--black-color);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-left: auto;
+  margin-right: 1rem;
+  transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+
+  &:hover {
+    border-color: var(--secondary-color);
+  }
+
+  svg {
+    width: 18px;
+    height: 18px;
+  }
+}
+
+.theme-toggle--mobile {
+  align-self: flex-end;
+  margin: 0.5rem 1rem;
 }
 
 .app__navbar-logo {
@@ -118,13 +149,14 @@
     align-items: flex-end;
     flex-direction: column;
 
-    background: url("../../assets/bgWhite.png");
+    /* Allow theming of the drawer background image via CSS variable fallback */
+    background: var(--nav-drawer-bg-image, url("../../assets/bgWhite.png"));
     background-color: var(--white-color);
     background-size: cover;
     background-repeat: repeat;
 
     /* top box shadow */
-    box-shadow: 0px 0px 20px rgba(168, 168, 168, 0.15);
+    box-shadow: 0px 0px 20px color-mix(in srgb, var(--black-color) 15%, transparent);
 
     svg {
       width: 50px;

@@ -43,14 +43,15 @@
         width: 90px;
         height: 90px;
         border-radius: 50%;
-        background-color: #fff;
+        background-color: var(--white-color);
 
         img{
             width: 50%;
             height: 50%;
         }
         &:hover{
-            box-shadow: 0 0 25px #fef4f5;
+            /* soft glow that adapts to theme */
+            box-shadow: 0 0 25px color-mix(in srgb, var(--secondary-color) 15%, transparent);
         }
         @media screen and (min-width: 2000px) {
             width: 150px;
@@ -131,7 +132,7 @@
 .skills-tooltip {
     max-width: 300px !important;
     background-color: var(--white-color) !important;
-    box-shadow: 0 0 25px rgba(0, 0, 0, 0.1) !important;
+    box-shadow: 0 0 25px color-mix(in srgb, var(--black-color) 10%, transparent) !important;
     border-radius: 5px !important;
     padding: 1rem !important;
     color: var(--gray-color) !important;

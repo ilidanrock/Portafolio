@@ -15,8 +15,6 @@ const Footer = () => {
     message: "",
   });
   const [loading, setLoading] = useState(false);
-
-  console.log(environmentsVariables);
   
 
   const { username, email, message } = formData;
@@ -37,7 +35,6 @@ const Footer = () => {
         })
         .then(
           () => {
-            console.log('SUCCESS!', form.current);
             setFormData({
               name: "",
               email: "",
@@ -46,7 +43,7 @@ const Footer = () => {
             setLoading(false);
           },
           (error) => {
-            console.log('FAILED...', error.text);
+
             setFormData({
               name: "",
               email: "",

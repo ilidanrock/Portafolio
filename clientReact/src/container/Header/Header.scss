@@ -1,6 +1,7 @@
 #home {
     position: relative;
-    background: url("../../assets/bgIMG.png");
+    /* Allow theming of header background image via CSS variable fallback */
+    background: var(--header-bg-image, url("../../assets/bgIMG.png"));
     background-size: cover;
     background-position: center;
     background-repeat: repeat;
@@ -66,8 +67,10 @@
       border-radius: 15px;
       flex-direction: row;
       width: auto;
-  
-      box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+
+      box-shadow: 0px 0px 20px color-mix(in srgb, var(--black-color) 10%, transparent);
+      /* subtle outline for better separation on dark backgrounds */
+      border: 1px solid color-mix(in srgb, var(--black-color) 12%, transparent);
     }
   
     .tag-cmp {
@@ -108,10 +111,11 @@
       width: 100px;
       height: 100px;
       border-radius: 50%;
-  
+
       background: var(--white-color);
-      box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
-  
+      box-shadow: 0px 0px 20px color-mix(in srgb, var(--black-color) 10%, transparent);
+      border: 1px solid color-mix(in srgb, var(--black-color) 12%, transparent);
+
       img {
         width: 60%;
         height: 60%;
@@ -179,7 +183,9 @@
       object-fit: contain;
       z-index: 1;
       border-radius:50%;
-      box-shadow: 0 0 50px 50px white inset
+      /* theme-aware soft halo that works on light and dark */
+      box-shadow: 0 0 50px 50px color-mix(in srgb, var(--black-color) 20%, var(--white-color) 80%) inset;
+      border: 1px solid color-mix(in srgb, var(--black-color) 12%, transparent);
     }
   
     .overlay_circle {

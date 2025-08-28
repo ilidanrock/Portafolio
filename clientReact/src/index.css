@@ -3,18 +3,31 @@
 :root {
   --font-base: "DM Sans", sans-serif;
 
-  --primary-color: #edf2f8;
-  --secondary-color: #313bac;
-  --black-color: #030303;
-  --lightGray-color: #e4e4e4;
-  --gray-color: #6b7688;
-  --brown-color: #46364a;
+  /* Improved color harmony with cohesive blue-based palette */
+  --primary-color: #f8fafc;
+  --secondary-color: #3b82f6;
+  --black-color: #0f172a;
+  --lightGray-color: #e2e8f0;
+  --gray-color: #64748b;
+  --brown-color: #475569;
   --white-color: #ffffff;
+}
+
+:root[data-theme="dark"] {
+  /* Dark theme with consistent tonal relationships */
+  --primary-color: #0f172a;
+  --secondary-color: #60a5fa;
+  --black-color: #f1f5f9;
+  --lightGray-color: #334155;
+  --gray-color: #94a3b8;
+  --brown-color: #cbd5e1;
+  --white-color: #1e293b;
+  /* Header background override for dark mode (picked up by Header.scss) */
+  --header-bg-image: linear-gradient(180deg, rgba(2,6,23,0.9) 0%, rgba(2,6,23,0.7) 40%, rgba(15,23,42,0.7) 100%);
 }
 
 * {
   box-sizing: border-box;
   padding: 0;
   margin: 0;
-  scroll-behavior: smooth;
 }
